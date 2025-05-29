@@ -1,0 +1,49 @@
+/* Page wrapper */
+.desserts-page {
+  background-color: #FCF8F5;
+  padding: 2rem 4rem;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Page heading */
+.desserts-page h1 {
+  font-size: 1.875rem; /* text-3xl */
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #1f2937;
+}
+
+/* Flex container */
+.dessert-flex {
+  display: flex;
+  width: 75%;
+  flex-wrap: wrap;
+  gap: 3.5rem;
+}
+
+/* Children default: 1 column */
+.dessert-flex > * {
+  width: 100%;
+}
+
+/* 2 columns */
+@media (min-width: 640px) {
+  .dessert-flex > * {
+    width: 48%;
+  }
+}
+
+/* 3 columns */
+@media (min-width: 768px) {
+  .dessert-flex > * {
+    width: 31%;
+  }
+}
+
+/* 4 columns */
+@media (min-width: 1024px) {
+  .dessert-flex > * {
+    width: 30%;
+  }
+}

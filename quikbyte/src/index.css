@@ -1,0 +1,37 @@
+body {
+  font-family: 'Red Hat Text', sans-serif;
+  margin: 0;
+}
+
+.dessert-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: flex-start;
+}
+
+.dessert-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: calc(33.333% - 1rem); /* 3 cards per row, adjust as needed */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .dessert-card {
+    width: calc(50% - 1rem); /* 2 per row on tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .dessert-card {
+    width: 100%; /* 1 per row on mobile */
+  }
+}
