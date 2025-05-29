@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ShoppingCart } from "lucide-react";
-import "./AddToCartButton.css";
+import "./styles.css";
 
 const AddToCartButton = ({ productId }) => {
   const [quantity, setQuantity] = useState(0);

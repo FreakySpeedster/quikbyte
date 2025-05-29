@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import ProductCard from "../../components/ProductCard/ProductCard";
-import "./ProductListPage.css";
+import ProductCard from "../../components/ProductCard";
+import Cart from "../../components/Cart";
+import "./styles.css";
 
 
 const ProductListPage = () => {
@@ -25,6 +26,9 @@ const ProductListPage = () => {
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
+      </div>
+      <div className="cart-container">
+        <Cart />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import React from "react";
-import AddToCartButton from "../AddToCartButton/AddToCartButton";
-import "./ProductCard.css";
+import AddToCartButton from "../AddToCartButton";
+import "./styles.css";
 
 const ProductCard = ({ product }) => {
   return (
