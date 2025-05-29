@@ -27,9 +27,7 @@ const ProductListPage = () => {
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
-      <div className="cart-container">
-        <Cart />
-      </div>
+      <Cart />
     </div>
   );
 };
