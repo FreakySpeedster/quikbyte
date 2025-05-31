@@ -3,14 +3,19 @@ import { ShoppingCart } from "lucide-react";
 import { useCart } from "../../contexts/CartContext";
 import "./styles.css";
 
-const AddToCartButton = ({ productId }) => {
+const AddToCartButton = ({ productId, productName, productPrice }) => {
   const { cart, addItem, removeItem } = useCart();
 
   const cartItem = cart.find(item => item.id === productId);
   const quantity = cartItem ? cartItem.quantity : 0;
 
   const handleAdd = () => {
-    const itemToAdd = { id: productId, quantity: 1 };
+    const itemToAdd = { 
+      id: productId,
+      name: productName,
+      price: productPrice,
+      quantity: 1
+    };
     addItem(itemToAdd);
   };
 

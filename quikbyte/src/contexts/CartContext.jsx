@@ -20,8 +20,27 @@ const cartReducer = (state, action) => {
             return [...state, { ...itemToAdd, quantity: 1 }];
         }
     }
-    case 'REMOVE_ITEM':
-      return state.filter(item => item.id !== action.payload);
+    case 'REMOVE_ITEM': {
+        const itemId = action.payload;
+        // Find the item to check its quantity
+        const itemToUpdate = state.find(item => item.id === itemId);
+        
+        // If item doesn't exist or has invalid quantity, return unchanged state
+        if (!itemToUpdate) return state;
+        
+        // If quantity is 1, remove the item completely
+        if (itemToUpdate.quantity === 1) {
+          return state.filter(item => item.id !== itemId);
+        }
+        
+        // Otherwise, decrease quantity by 1
+        return state.map(item =>
+          item.id === itemId
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        );
+    }
+          
     case 'CLEAR_CART':
       return [];
     default:
