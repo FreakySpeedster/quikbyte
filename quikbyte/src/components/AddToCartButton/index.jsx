@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useCallback, memo } from "react";
 import { ShoppingCart } from "lucide-react";
 import { useCart } from "../../contexts/CartContext";
 import "./styles.css";
 
-const AddToCartButton = ({ productId, productName, productPrice }) => {
+const AddToCartButton = memo(function AddToCartButton ({ productId, productName, productPrice }) {
   const { cart, addItem, reduceQuantity } = useCart();
 
-  const cartItem = cart.find(item => item.id === productId);
-  const quantity = cartItem ? cartItem.quantity : 0;
+  const cartItem = useMemo(() => {
+    return cart.find(item => item.id === productId);
+  }, [cart, productId]);
 
-  const handleAdd = () => {
+  const quantity = useMemo(() => {
+    return cartItem ? cartItem.quantity : 0;
+  }, [cartItem]);
+
+  const handleAdd = useCallback(() => {
     const itemToAdd = { 
       id: productId,
       name: productName,
@@ -17,13 +22,13 @@ const AddToCartButton = ({ productId, productName, productPrice }) => {
       quantity: 1
     };
     addItem(itemToAdd);
-  };
+  }, [productId, productName, productPrice, addItem]);
 
-  const handleRemove = () => {
+  const handleRemove = useCallback(() => {
     if (quantity > 0) {
       reduceQuantity(productId);
     }
-  };
+  }, [quantity, productId, reduceQuantity]);
 
   if (quantity === 0) {
     return (
@@ -45,6 +50,6 @@ const AddToCartButton = ({ productId, productName, productPrice }) => {
       </button>
     </div>
   );
-};
+});
 
 export default AddToCartButton;

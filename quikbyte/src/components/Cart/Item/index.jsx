@@ -1,9 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import { useCart } from "../../../contexts/CartContext";
 import CloseBtn from "../../../../public/close-btn.svg";
 import "./styles.css";
 
-const Item = ({ item }) => {
+const Item = memo(function Item({ item }) {
   const { removeItem } = useCart();
   
   const { id, name, price, quantity } = item;
@@ -28,6 +28,6 @@ const Item = ({ item }) => {
       </button>
     </div>
   );
-};
+});
 
 export default Item;

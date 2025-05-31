@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, lazy, Suspense, useCallback } from "react";
 import { useCart } from "../../contexts/CartContext";
 import EmptyCart from "../../../public/empty-cart.svg";
 import CarbonNeutral from "../../../public/carbon-neutral.svg";
 import Item from "./Item";
-import OrderConfirmationModal from "../OrderConfirmationModal";
+const OrderConfirmationModal = lazy(() => 
+  import('../OrderConfirmationModal')
+);
 import "./styles.css";
 
 const CONFIRM_ORDER_API_URL = "/api/order";
@@ -16,16 +18,18 @@ const Cart = () => {
   const [confirmedOrderItems, setConfirmedOrderItems] = useState([]);
   const [confirmedTotal, setConfirmedTotal] = useState(0);
 
-  const orderTotal = cart.reduce((total, item) => {
-    return total + (item.price * item.quantity);
-  }, 0);
+  const orderTotal = useMemo(() => {
+    return cart.reduce((total, item) => {
+      return total + (item.price * item.quantity);
+    }, 0);
+  }, [cart]);
 
   const handleOrderSubmission = async () => {
     if (cart.length === 0) return;
 
     // Prepare order data
     const orderData = {
-      couponCode: "", // This can be dynamic if you add coupon functionality
+      couponCode: "",
       items: cart.map(item => ({
         productId: item.id,
         quantity: item.quantity
@@ -47,7 +51,13 @@ const Cart = () => {
       const result = await response.json();
       
       if (!response.ok) {
-        throw new Error(result.message || "Failed to place order");
+        if (response.status === 401) {
+          throw new Error("Your session has expired. Please log in again.");
+        } else if (response.status === 429) {
+          throw new Error("Too many requests. Please try again later.");
+        } else {
+          throw new Error(result.message || `Error ${response.status}: Failed to place order`);
+        }
       }
 
       // Extract products from the API response
@@ -86,9 +96,9 @@ const Cart = () => {
     }
   };
 
-  const handleCloseConfirmation = () => {
+  const handleCloseConfirmation = useCallback(() => {
     setShowConfirmation(false);
-  };
+  }, [setShowConfirmation]);
 
   return (
     <>
@@ -107,11 +117,6 @@ const Cart = () => {
               ))}
             </div>
             <div className="cart-summary">
-              {/* {!orderStatus?.success && (
-                <div className="order-status error">
-                  {orderStatus?.message}
-                </div>
-              )} */}
               <div className="order-total">
                 <span className="order-total-label">Order Total</span>
                 <span className="total-amount">${orderTotal.toFixed(2)}</span>
@@ -127,13 +132,16 @@ const Cart = () => {
           </div>
         )}
       </div>
-      
-      <OrderConfirmationModal
-        isOpen={showConfirmation}
-        onClose={handleCloseConfirmation}
-        orderItems={confirmedOrderItems}
-        orderTotal={confirmedTotal}
-      />
+      {showConfirmation && (
+        <Suspense fallback={<div>Loading...</div>}>
+          <OrderConfirmationModal 
+            isOpen={showConfirmation}
+            onClose={handleCloseConfirmation}
+            orderItems={confirmedOrderItems}
+            orderTotal={confirmedTotal}
+          />
+        </Suspense>
+      )}
     </>
   );
 };

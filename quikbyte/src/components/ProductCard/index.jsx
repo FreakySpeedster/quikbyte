@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import AddToCartButton from "../AddToCartButton";
 import "./styles.css";
 
-const ProductCard = ({ product }) => {
+const ProductCard = memo(function ProductCard({ product }) {
   const { id, name, price, image, category } = product;
   return (
     <div className="product-card">
@@ -10,6 +10,7 @@ const ProductCard = ({ product }) => {
         src={image.desktop}
         alt={name}
         className="product-image"
+        loading="lazy"
       />
       <AddToCartButton 
         productId={id} 
@@ -23,6 +24,6 @@ const ProductCard = ({ product }) => {
       </div>
     </div>
   );
-};
+});
 
 export default ProductCard;
