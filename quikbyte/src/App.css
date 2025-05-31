@@ -1,0 +1,46 @@
+/* 
+ * QuikByte Color System
+ * This file contains all colors used throughout the application
+ */
+
+:root {
+  /* Primary Colors */
+  --primary: #C63B0F;
+  --primary-dark: #B23409;
+  --primary-light: #BD7866;
+  
+  /* Background Colors */
+  --background-main: #FCF8F5;
+  --background-card: #FFFFFF;
+  --background-neutral: #FBF7F4;
+  --background-secondary: #F8F8F8;
+  
+  /* Text Colors */
+  --text-primary: #1F2937;
+  --text-secondary: #4B5563;
+  --text-tertiary: #6B7280;
+  --text-muted: #928D8B;
+  --text-light: #837975;
+  --text-dark: #483A37;
+  
+  /* UI Element Colors */
+  --border-light: #EEEEEE;
+  --border-medium: #E5E7EB;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  
+  /* Feedback Colors */
+  --success: #4CAF50;
+  --success-light: rgba(76, 175, 80, 0.1);
+  --success-dark: #2E7D32;
+  
+  --error: #D32F2F;
+  --error-light: rgba(244, 67, 54, 0.1);
+  --error-dark: #991B1B;
+  
+  /* Overlay */
+  --overlay: rgba(0, 0, 0, 0.5);
+  
+  /* Scrollbar Colors */
+  --scrollbar-track: #FBF7F4;
+  --scrollbar-thumb: #C63B0F;
+}

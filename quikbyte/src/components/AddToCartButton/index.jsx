@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useCallback, memo } from "react";
 import { ShoppingCart } from "lucide-react";
 import { useCart } from "../../contexts/CartContext";
+import { LABELS } from "../../constants";
 import "./styles.css";
 
 const AddToCartButton = memo(function AddToCartButton ({ productId, productName, productPrice }) {
@@ -34,7 +35,7 @@ const AddToCartButton = memo(function AddToCartButton ({ productId, productName,
     return (
       <button className="add-to-cart-btn" onClick={handleAdd}>
         <ShoppingCart size={16} />
-        <span>Add to Cart</span>
+        <span>{LABELS.ADD_TO_CART.ADD}</span>
       </button>
     );
   }

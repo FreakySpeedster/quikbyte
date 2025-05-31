@@ -1,6 +1,6 @@
 /* Page wrapper */
 .desserts-page {
-  background-color: #FCF8F5;
+  background-color: var(--background-main);
   padding: 2rem 4rem;
   min-height: 100vh;
   box-sizing: border-box;
@@ -11,7 +11,7 @@
   font-size: 1.875rem; /* text-3xl */
   font-weight: 700;
   margin-bottom: 0.5rem;
-  color: #1f2937;
+  color: var(--text-primary);
 }
 
 /* Desserts header with count */
@@ -20,7 +20,7 @@
 }
 
 .product-count {
-  color: #6B7280;
+  color: var(--text-tertiary);
   font-size: 0.875rem;
   margin-top: 0;
 }
@@ -44,8 +44,8 @@
 }
 
 .loading-spinner {
-  border: 4px solid rgba(0, 0, 0, 0.1);
-  border-left-color: #C63B0F;
+  border: 4px solid var(--shadow-color);
+  border-left-color: var(--primary);
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -71,15 +71,15 @@
 }
 
 .error-container h2 {
-  color: #991B1B;
+  color: var(--error-dark);
   margin-bottom: 0.5rem;
 }
 
 .retry-button, .refresh-button {
   margin-top: 1rem;
   padding: 0.75rem 1.5rem;
-  background-color: #C63B0F;
-  color: white;
+  background-color: var(--primary);
+  color: var(--background-card);
   border: none;
   border-radius: 20px;
   font-weight: 600;
@@ -88,7 +88,7 @@
 }
 
 .retry-button:hover, .refresh-button:hover {
-  background-color: #9c2f0b;
+  background-color: var(--primary-dark);
 }
 
 /* Empty state */
@@ -104,7 +104,7 @@
 }
 
 .empty-state-container h2 {
-  color: #4B5563;
+  color: var(--text-secondary);
   margin-bottom: 0.5rem;
 }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { CheckCircle } from "lucide-react";
+import { LABELS } from '../../constants';
 import "./styles.css";
 
 const OrderConfirmationModal = ({ isOpen, onClose, orderItems, orderTotal }) => {
@@ -12,8 +13,8 @@ const OrderConfirmationModal = ({ isOpen, onClose, orderItems, orderTotal }) => 
           <div className="success-icon">
             <CheckCircle size={40} color="#4CAF50" strokeWidth={1.5} />
           </div>
-          <h2 className="modal-title">Order Confirmed</h2>
-          <p className="modal-subtitle">We hope you enjoy your food!</p>
+          <h2 className="modal-title">{LABELS.ORDER.CONFIRMED}</h2>
+          <p className="modal-subtitle">{LABELS.ORDER.HOPE_ENJOY}</p>
         </div>
         
         <div className="order-summary">
@@ -33,12 +34,12 @@ const OrderConfirmationModal = ({ isOpen, onClose, orderItems, orderTotal }) => 
         </div>
         
         <div className="order-total-row">
-          <span>Order Total</span>
+          <span>{LABELS.CART.ORDER_TOTAL}</span>
           <span className="order-total-amount">${orderTotal.toFixed(2)}</span>
         </div>
         
         <button onClick={onClose} className="new-order-button">
-          Start New Order
+          {LABELS.ORDER.START_NEW}
         </button>
       </div>
     </div>

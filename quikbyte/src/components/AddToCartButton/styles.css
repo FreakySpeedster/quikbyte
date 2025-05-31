@@ -9,17 +9,17 @@
   padding: 0.5rem 1rem;
   font-size: 0.875rem;
   font-weight: 500;
-  color: #b91c1c; /* red-700 */
-  background-color: #fff;
-  border: 1px solid #b91c1c;
-  border-radius: 9999px; /* full pill */
+  color: var(--primary);
+  background-color: var(--background-card);
+  border: 1px solid var(--primary);
+  border-radius: 30px; 
   cursor: pointer;
   transition: background-color 0.2s ease;
   z-index: 2;
 }
 
 .add-to-cart-btn:hover {
-  background-color: #fee2e2; /* red-100 */
+  background-color: var(--background-neutral);
 }
 
 /* Quantity control (active state) */
@@ -31,8 +31,8 @@
   transform: translateX(-50%);
   align-items: center;
   justify-content: center;
-  background-color: #b91c1c; /* red-700 */
-  color: white;
+  background-color: var(--primary);
+  color: var(--background-card);
   border-radius: 9999px;
   padding: 0.4rem 1rem;
   gap: 1.5rem;
@@ -41,7 +41,7 @@
 .qty-btn {
   background: none;
   border: none;
-  color: white;
+  color: var(--background-card);
   font-size: 1.25rem;
   font-weight: bold;
   cursor: pointer;

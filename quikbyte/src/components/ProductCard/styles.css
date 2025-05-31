@@ -10,7 +10,7 @@
 
 .product-card:hover {
   .product-image {
-    border: 2px solid #C63B0F;
+    border: 2px solid var(--primary);
   }
 }
 
@@ -35,7 +35,7 @@
 .product-category {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #A49995;
+  color: var(--text-muted);
   letter-spacing: 0.04em;
   margin-bottom: 0.25rem;
 }
@@ -44,7 +44,7 @@
 .product-name {
   font-size: 1rem;
   font-weight: 600;
-  color: #6A5F5C;
+  color: var(--text-light);
   margin-bottom: 0.25rem;
 }
 
@@ -52,6 +52,6 @@
 .product-price {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #BC7964; /* gray-900 */
+  color: var(--primary-light);
   margin-bottom: 0.7
 }

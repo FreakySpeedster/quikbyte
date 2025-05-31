@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-light);
 }
 
 .item-info {
@@ -11,7 +11,7 @@
 }
 
 .item-name {
-  color: #716A67;
+  color: var(--text-light);
   margin: 0 0 8px 0;
   font-size: 0.9rem;
   font-weight: 600;
@@ -20,31 +20,31 @@
 .item-details {
   display: flex;
   gap: 12px;
-  color: #666;
+  color: var(--text-tertiary);
   font-size: 14px;
 }
 
 .quantity {
-  color: #C08778;
+  color: var(--primary-light);
   font-weight: 600;
   min-width: 30px;
 }
 
 .price {
-  color: #B2A8A6;
+  color: var(--text-muted);
   font-weight: 600;
 }
 
 .total-price {
   font-weight: 600;
-  color: #B2A8A6;
+  color: var(--text-muted);
 }
 
 .remove-button {
   background: none;
   border: none;
   margin-right: 10px;
-  color: #999;
+  color: var(--text-muted);
   font-size: 20px;
   cursor: pointer;
   padding: 4px 8px;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import ProductCard from "../../components/ProductCard";
 import Cart from "../../components/Cart";
+import { LABELS } from "../../constants";
 import "./styles.css";
 
 const PRODUCT_API_URL = "/api/product";
@@ -26,7 +27,7 @@ const ProductListPage = () => {
       setProducts(Array.isArray(data) ? data : []);
     } catch (err) {
       console.error("Error fetching products:", err);
-      setError(err.message || "Failed to load products. Please try again.");
+      setError(err.message || LABELS.PRODUCTS.ERROR);
     } finally {
       setLoading(false);
     }
@@ -45,7 +46,7 @@ const ProductListPage = () => {
     return (
       <div className="loading-container">
         <div className="loading-spinner"></div>
-        <p>Loading delicious desserts...</p>
+        <p>{LABELS.PRODUCTS.LOADING}</p>
       </div>
     );
   }
@@ -54,10 +55,10 @@ const ProductListPage = () => {
   if (error) {
     return (
       <div className="error-container">
-        <h2>Oops! Something went wrong</h2>
+        <h2>{LABELS.PRODUCTS.SOMETHING_WRONG}</h2>
         <p>{error}</p>
         <button onClick={handleRetry} className="retry-button">
-          Try Again
+          {LABELS.PRODUCTS.RETRY}
         </button>
       </div>
     );
@@ -67,10 +68,10 @@ const ProductListPage = () => {
   if (products.length === 0) {
     return (
       <div className="empty-state-container">
-        <h2>No Desserts Available</h2>
-        <p>We're currently updating our menu. Check back soon for delicious treats!</p>
+        <h2>{LABELS.PRODUCTS.EMPTY}</h2>
+        <p>{LABELS.PRODUCTS.UPDATING_MENU}</p>
         <button onClick={handleRetry} className="refresh-button">
-          Refresh
+          {LABELS.PRODUCTS.REFRESH}
         </button>
       </div>
     );
@@ -79,7 +80,7 @@ const ProductListPage = () => {
   return (
     <div className="desserts-page">
       <div className="desserts-header">
-        <h1>Desserts</h1>
+        <h1>{LABELS.PRODUCTS.TITLE}</h1>
         <p className="product-count">{products.length} items available</p>
       </div>
       

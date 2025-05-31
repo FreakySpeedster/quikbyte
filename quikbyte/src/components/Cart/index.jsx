@@ -3,6 +3,7 @@ import { useCart } from "../../contexts/CartContext";
 import EmptyCart from "../../../public/empty-cart.svg";
 import CarbonNeutral from "../../../public/carbon-neutral.svg";
 import Item from "./Item";
+import { LABELS } from "../../constants";
 const OrderConfirmationModal = lazy(() => 
   import('../OrderConfirmationModal')
 );
@@ -103,11 +104,11 @@ const Cart = () => {
   return (
     <>
       <div className="cart-container">
-        <div className="cart-heading">Your Cart</div>
+        <div className="cart-heading">{LABELS.CART.TITLE}</div>
         {cart.length === 0 ? (
           <div className="empty-cart-content">
             <img src={EmptyCart} alt="Empty Cart" style={{ width: "180px", height: "180px" }} />
-            <p>Your added items will appear here</p>
+            <p>{LABELS.CART.EMPTY_CART}</p>
           </div>
         ) : (
           <div className="cart-content">
@@ -118,15 +119,15 @@ const Cart = () => {
             </div>
             <div className="cart-summary">
               <div className="order-total">
-                <span className="order-total-label">Order Total</span>
+                <span className="order-total-label">{LABELS.CART.ORDER_TOTAL}</span>
                 <span className="total-amount">${orderTotal.toFixed(2)}</span>
               </div>
               <div className="carbon-neutral">
                 <img src={CarbonNeutral} alt="Empty Cart" style={{ width: "18px", height: "18px" }} />
-                <p>This is a <span style={{color: '#837975'}}>carbon-neutral</span> delivery</p>
+                <p>{LABELS.CART.CARBON_NEUTRAL}</p>
               </div>
               <button className="place-order-btn" onClick={handleOrderSubmission} disabled={isSubmitting || cart.length === 0}>
-                {isSubmitting ? "Processing..." : "Confirm Order"}
+                {isSubmitting ? LABELS.CART.PROCESSING : LABELS.CART.CONFIRM_ORDER}
               </button>
             </div>
           </div>
