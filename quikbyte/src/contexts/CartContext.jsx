@@ -21,25 +21,34 @@ const cartReducer = (state, action) => {
         }
     }
     case 'REMOVE_ITEM': {
-        const itemId = action.payload;
-        // Find the item to check its quantity
-        const itemToUpdate = state.find(item => item.id === itemId);
-        
-        // If item doesn't exist or has invalid quantity, return unchanged state
-        if (!itemToUpdate) return state;
-        
-        // If quantity is 1, remove the item completely
-        if (itemToUpdate.quantity === 1) {
-          return state.filter(item => item.id !== itemId);
-        }
-        
-        // Otherwise, decrease quantity by 1
-        return state.map(item =>
-          item.id === itemId
-            ? { ...item, quantity: item.quantity - 1 }
-            : item
-        );
+      const { payload: itemId } = action;
+      // Filter out the item with the given id
+      return state.filter(item => item.id !== itemId);
     }
+
+    case 'REDUCE_QUANTITY': {
+      const { payload: itemId } = action;
+      const amount = 1;
+      // Find the item to check its quantity
+      const itemToUpdate = state.find(item => item.id === itemId);
+      
+      // If item doesn't exist or has invalid quantity, return unchanged state
+      if (!itemToUpdate) return state;
+      
+      // If requested reduction would make quantity 0 or negative, remove the item completely
+      if (itemToUpdate.quantity <= amount) {
+        return state.filter(item => item.id !== itemId);
+      }
+      
+      // Otherwise, reduce quantity by specified amount
+      return state.map(item =>
+        item.id === itemId
+          ? { ...item, quantity: item.quantity - amount }
+          : item
+      );
+    }
+
+
           
     case 'CLEAR_CART':
       return [];
@@ -53,10 +62,11 @@ export const CartProvider = ({ children }) => {
 
   const addItem = (item) => dispatch({ type: 'ADD_ITEM', payload: item });
   const removeItem = (id) => dispatch({ type: 'REMOVE_ITEM', payload: id });
+  const reduceQuantity = (id) => dispatch({ type: 'REDUCE_QUANTITY', payload: id });
   const clearCart = () => dispatch({ type: 'CLEAR_CART' });
 
   return (
-    <CartContext.Provider value={{ cart, addItem, removeItem, clearCart }}>
+    <CartContext.Provider value={{ cart, addItem, removeItem, reduceQuantity, clearCart }}>
       {children}
     </CartContext.Provider>
   );

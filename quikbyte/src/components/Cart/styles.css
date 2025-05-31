@@ -40,6 +40,8 @@
   overflow-y: auto;
   margin-bottom: 1rem;
   max-height: calc(100% - 5rem);
+  scrollbar-width: thin;
+  scrollbar-color: #C63B0F #FBF7F4;
 }
 
 .cart-summary {
@@ -50,7 +52,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0;
+  padding: 0.6rem 0;
 }
 
 .order-total-label {
@@ -90,4 +92,32 @@
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
+}
+
+.order-status {
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.order-status.success {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: #2e7d32;
+}
+
+.order-status.error {
+  background-color: rgba(244, 67, 54, 0.1);
+  color: #d32f2f;
+}
+
+.order-success-message {
+  color: #2e7d32;
+  margin-top: 1rem;
+}
+
+.place-order-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
 }

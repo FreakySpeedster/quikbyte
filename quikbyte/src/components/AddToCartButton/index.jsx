@@ -4,7 +4,7 @@ import { useCart } from "../../contexts/CartContext";
 import "./styles.css";
 
 const AddToCartButton = ({ productId, productName, productPrice }) => {
-  const { cart, addItem, removeItem } = useCart();
+  const { cart, addItem, reduceQuantity } = useCart();
 
   const cartItem = cart.find(item => item.id === productId);
   const quantity = cartItem ? cartItem.quantity : 0;
@@ -21,7 +21,7 @@ const AddToCartButton = ({ productId, productName, productPrice }) => {
 
   const handleRemove = () => {
     if (quantity > 0) {
-      removeItem(productId);
+      reduceQuantity(productId);
     }
   };
 
