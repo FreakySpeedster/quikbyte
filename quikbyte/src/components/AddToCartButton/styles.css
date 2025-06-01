@@ -39,22 +39,23 @@
 }
 
 .qty-btn {
-  background: none;
-  border: none;
-  color: var(--background-card);
-  font-size: 1rem;
-  cursor: pointer;
-  width: 24px;
-  height: 24px;
-  text-align: center;
-  border-radius: 50%;
-  transition: background-color 0.2s ease;
-  border: 1px solid var(--background-card);
+    position: relative;
+    top: 2px;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.qty-btn:hover {
-  background-color: var(--background-card);
-  color: var(--primary);
+.qty-btn:hover svg {
+    transform: scale(1.2);
+    stroke: var(--background-neutral);
+    stroke-width: 2;
+}
+
+.qty-btn:hover svg path,
+.qty-btn:hover svg circle {
+    fill: var(--background-card);
+    stroke: var(--primary);
+    stroke-width: 2;
 }
 
 .qty-count {

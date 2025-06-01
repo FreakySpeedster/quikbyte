@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback, memo } from "react";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, CirclePlus, CircleMinus } from "lucide-react";
 import { useCart } from "../../contexts/CartContext";
 import { LABELS } from "../../constants";
 import "./styles.css";
@@ -42,13 +42,13 @@ const AddToCartButton = memo(function AddToCartButton ({ productId, productName,
 
   return (
     <div className="quantity-control">
-      <button className="qty-btn" onClick={handleRemove}>
-        –
-      </button>
+      <div className="qty-btn" onClick={handleRemove}>
+        <CircleMinus size={18}/>
+      </div>
       <span className="qty-count">{quantity}</span>
-      <button className="qty-btn" onClick={handleAdd}>
-        +
-      </button>
+      <div className="qty-btn" onClick={handleAdd}>
+        <CirclePlus size={18}/>
+      </div>
     </div>
   );
 });
