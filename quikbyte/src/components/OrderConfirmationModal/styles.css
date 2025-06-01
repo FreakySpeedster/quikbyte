@@ -142,3 +142,16 @@
   border-radius: 4px;
   object-fit: cover;
 }
+
+/* Discount styling */
+.original-price {
+  text-decoration: line-through;
+  color: var(--text-tertiary);
+  margin-right: 4px;
+  font-size: 0.8rem;
+}
+
+.discounted-price {
+  color: var(--primary);
+  font-weight: 600;
+}

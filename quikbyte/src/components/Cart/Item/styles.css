@@ -53,3 +53,27 @@
   align-items: center;
   justify-content: center;
 }
+
+.remove-button:hover {
+  background-color: var(--background-neutral);
+}
+
+/* Discount styling */
+.original-price {
+  text-decoration: line-through;
+  color: var(--text-tertiary);
+  margin-right: 4px;
+  font-size: 0.8rem;
+}
+
+.original-total {
+  text-decoration: line-through;
+  color: var(--text-tertiary);
+  margin-right: 4px;
+  font-size: 0.8rem;
+}
+
+.discounted-price {
+  color: var(--primary);
+  font-weight: 600;
+}

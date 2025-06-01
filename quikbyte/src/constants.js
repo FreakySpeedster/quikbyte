@@ -16,6 +16,10 @@ const LABELS = {
     PROCESSING: 'Processing...',
     CARBON_NEUTRAL: 'This is a carbon-neutral delivery',
     CLEAR_CART: 'Clear Cart',
+    DISCOUNT_CODE: 'Enter discount code',
+    APPLY_DISCOUNT: 'Apply',
+    INVALID_CODE: 'Invalid discount code',
+    DISCOUNT_APPLIED: 'Discount applied',
   },
   
   // Order Confirmation

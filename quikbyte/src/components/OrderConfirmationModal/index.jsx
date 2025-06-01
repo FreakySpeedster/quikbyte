@@ -25,7 +25,15 @@ const OrderConfirmationModal = ({ isOpen, onClose, orderItems, orderTotal }) => 
                 <div className="item-name">{item.name}</div>
                 <div className="item-quantity-price">
                   <span>{item.quantity}x</span>
-                  <span className="item-price">@${item.price.toFixed(2)}</span>
+                  
+                  {item.originalPrice ? (
+                    <span className="item-price">
+                      <span className="original-price">@${item.originalPrice.toFixed(2)}</span>
+                      <span className="discounted-price">@${item.price.toFixed(2)}</span>
+                    </span>
+                  ) : (
+                    <span className="item-price">@${item.price.toFixed(2)}</span>
+                  )}
                 </div>
               </div>
               <div className="item-total">${(item.price * item.quantity).toFixed(2)}</div>

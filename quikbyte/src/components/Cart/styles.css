@@ -4,7 +4,7 @@
   justify-content: flex-start;
   box-sizing: border-box;
   width: 25%;
-  height: 36em;
+  height: 80%;
   position: fixed;
   padding: 2rem;
   top: 3.5em;
@@ -34,11 +34,20 @@
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.cart-item-count {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-left: 0.5rem;
 }
 .cart-items {
   flex-grow: 1;
   overflow-y: auto;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   max-height: calc(100% - 5rem);
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
@@ -120,4 +129,110 @@
 .place-order-btn:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
+}
+
+/* Discount code styles */
+.discount-code-container {
+  display: flex;
+  gap: 8px;
+}
+
+.discount-code-input {
+  flex-grow: 1;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+  font-size: 0.9rem;
+}
+
+.apply-discount-btn {
+  padding: 8px 16px;
+  background-color: var(--primary);
+  color: var(--background-card);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.apply-discount-btn:hover {
+  background-color: var(--primary);
+}
+
+.apply-discount-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.discount-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.discount-amount {
+  color: var(--primary);
+}
+
+.subtotal {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-muted);
+  padding: 8px 0;
+  font-size: 0.9rem;
+}
+
+.discount-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.remove-discount {
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.remove-discount:hover {
+  background-color: var(--background-neutral);
+  color: var(--primary);
+}
+
+.discount-code-section {
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Enable positioning for message */
+  height: auto; /* Allow natural height */
+}
+
+.discount-message {
+  font-size: 0.75rem;
+  padding: 4px 0;
+  margin-top: 2px;
+  text-align: left;
+  min-height: 1.5em; /* Reserve consistent space for the message */
+  display: block; /* Ensure it takes up space even when empty */
+}
+
+.discount-message.success {
+  color: var(--success-dark);
+}
+
+.discount-message.error {
+  color: var(--error);
 }
