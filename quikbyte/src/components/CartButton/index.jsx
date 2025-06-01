@@ -16,7 +16,7 @@ const CartButton = ({ onClick, isCartVisible }) => {
       aria-label={isCartVisible ? "Close cart" : "Open cart"}
     >
       {isCartVisible && window.innerWidth <= 768 ? <X size={20} /> : <ShoppingCart size={20} />}
-      {totalItems > 0 && <span className="header-cart-count">{totalItems}</span>}
+      {totalItems > 0 && !isCartVisible  && <span className="header-cart-count">{totalItems}</span>}
     </button>
   );
 };
