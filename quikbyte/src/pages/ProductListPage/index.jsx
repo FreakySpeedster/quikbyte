@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import ProductCard from "../../components/ProductCard";
 import Cart from "../../components/Cart";
+import CartButton from "../../components/CartButton";
 import { LABELS } from "../../constants";
 import "./styles.css";
 
@@ -11,6 +12,38 @@ const ProductListPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [retryCount, setRetryCount] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isCartVisible, setIsCartVisible] = useState(() => {
+    // Initialize cart visibility based on screen size
+    return window.innerWidth > 768;
+  });
+  
+  // Toggle cart visibility function
+  const toggleCartVisibility = useCallback(() => {
+    setIsCartVisible(prev => !prev);
+  }, []);
+  
+  // Mobile detection and cart visibility handling
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      
+      // Always show cart on desktop, keep current state on mobile
+      if (!mobile) {
+        setIsCartVisible(true);
+      }
+    };
+    
+    // Initial check
+    handleResize();
+    
+    // Listen for window resize
+    window.addEventListener('resize', handleResize);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const fetchProducts = useCallback(async () => {
     setLoading(true);
@@ -80,8 +113,15 @@ const ProductListPage = () => {
   return (
     <div className="desserts-page">
       <div className="desserts-header">
-        <h1>{LABELS.PRODUCTS.TITLE}</h1>
-        <p className="product-count">{products.length} items available</p>
+        <div className="header-left">
+          <h1>{LABELS.PRODUCTS.TITLE}</h1>
+          <p className="product-count">{products.length} items available</p>
+        </div>
+        {isMobile && (
+          <div className="header-right">
+            <CartButton onClick={toggleCartVisibility} isCartVisible={isCartVisible} />
+          </div>
+        )}
       </div>
       
       <div className="dessert-flex">
@@ -89,7 +129,7 @@ const ProductListPage = () => {
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
-      <Cart />
+      {isCartVisible && <Cart onMobileClose={toggleCartVisibility} />}
     </div>
   );
 };

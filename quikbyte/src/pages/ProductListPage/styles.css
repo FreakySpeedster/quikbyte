@@ -16,7 +16,19 @@
 
 /* Desserts header with count */
 .desserts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 1.5rem;
+}
+
+.header-left {
+  flex: 1;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
 }
 
 .product-count {
@@ -31,6 +43,47 @@
   width: 75%;
   flex-wrap: wrap;
   gap: 3.5rem;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .dessert-flex {
+    width: 100%;
+    gap: 2rem;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 768px) {
+  .desserts-page {
+    padding: 1.5rem;
+  }
+  
+  .dessert-flex {
+    gap: 1.5rem;
+    justify-content: center;
+  }
+  
+  .desserts-page h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .desserts-page {
+    padding: 1rem;
+  }
+  
+  .desserts-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .header-right {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
 }
 
 /* Loading state */
@@ -131,5 +184,36 @@
 @media (min-width: 1024px) {
   .dessert-flex > * {
     width: 30%;
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .desserts-page {
+    padding: 1.5rem;
+  }
+
+  .dessert-flex {
+    width: 100%;
+    gap: 2rem;
+  }
+
+  /* Ensure cart doesn't interfere with page layout on mobile */
+  .dessert-flex > * {
+    width: calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .desserts-page {
+    padding: 1rem;
+  }
+
+  .dessert-flex > * {
+    width: 100%;
+  }
+
+  .desserts-header h1 {
+    font-size: 1.5rem;
   }
 }

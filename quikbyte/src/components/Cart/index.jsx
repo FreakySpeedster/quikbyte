@@ -1,5 +1,6 @@
-import React, { useState, useMemo, lazy, Suspense, useCallback } from "react";
+import React, { useState, useMemo, lazy, Suspense, useCallback, useEffect } from "react";
 import { useCart } from "../../contexts/CartContext";
+import { X, ShoppingCart } from "lucide-react";
 import EmptyCart from "../../../public/empty-cart.svg";
 import CarbonNeutral from "../../../public/carbon-neutral.svg";
 import Item from "./Item";
@@ -14,7 +15,7 @@ const DISCOUNT_CODES = {
   "HAPPYHOURS": 0.18 // 18% discount
 };
 
-const Cart = () => {
+const Cart = ({ onMobileClose }) => {
   const { cart, clearCart } = useCart();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderStatus, setOrderStatus] = useState(null);
@@ -23,6 +24,35 @@ const Cart = () => {
   const [confirmedTotal, setConfirmedTotal] = useState(0);
   const [discountCode, setDiscountCode] = useState("");
   const [appliedDiscount, setAppliedDiscount] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Check if user is on mobile device and handle orientation changes
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    // Initial check
+    checkMobile();
+    
+    // Listen for window resize and orientation change
+    window.addEventListener('resize', checkMobile);
+    window.addEventListener('orientationchange', checkMobile);
+    
+    // Prevent body scrolling when cart is open on mobile
+    if (isMobile) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      window.removeEventListener('orientationchange', checkMobile);
+      document.body.style.overflow = '';
+    };
+  }, [isMobile]);
 
   // Apply discount code
   const applyDiscountCode = useCallback(() => {
@@ -186,10 +216,33 @@ const Cart = () => {
 
   return (
     <>
-      <div className="cart-container">
-        <div className="cart-heading">
-          {LABELS.CART.TITLE}
-          {totalItems > 0 && <span className="cart-item-count">({totalItems})</span>}
+      {isMobile && <div className="cart-backdrop" onClick={onMobileClose}></div>}
+      <div 
+        className={`cart-container ${isMobile ? 'mobile-cart' : ''}`}
+        role="dialog"
+        aria-modal={isMobile ? "true" : "false"}
+        aria-label="Shopping Cart"
+        onKeyDown={(e) => {
+          if (e.key === 'Escape' && isMobile) {
+            onMobileClose && onMobileClose();
+          }
+        }}
+        tabIndex={-1}
+      >
+        <div className="cart-header">
+          <div className="cart-heading">
+            {LABELS.CART.TITLE}
+            {totalItems > 0 && <span className="cart-item-count">({totalItems})</span>}
+          </div>
+          {isMobile && (
+            <button 
+              className="mobile-close-btn" 
+              onClick={onMobileClose} 
+              aria-label="Close cart"
+            >
+              <X size={20} />
+            </button>
+          )}
         </div>
         {cart.length === 0 ? (
           <div className="empty-cart-content">

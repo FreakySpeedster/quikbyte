@@ -20,6 +20,12 @@
   box-shadow: 0 4px 12px var(--shadow-color);
   display: flex;
   flex-direction: column;
+
+  .item-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+  }
 }
 
 .modal-header {
@@ -83,12 +89,6 @@
   align-items: center;
   padding: 8px 0;
   border-bottom: 1px solid var(--background-secondary);
-}
-
-.item-info {
-  display: flex;
-  flex-direction: column;
-  margin-left: 1em;
 }
 
 .item-quantity-price {

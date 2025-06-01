@@ -1,0 +1,55 @@
+/* CartButton styles */
+.header-cart-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-neutral);
+  color: var(--text-dark);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.header-cart-button:hover {
+  background-color: var(--border-light);
+}
+
+.header-cart-button.cart-open {
+  background-color: var(--primary);
+  color: white;
+}
+
+.header-cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: var(--primary);
+  color: white;
+  border-radius: 50%;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 2px;
+  font-size: 10px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.cart-open .header-cart-count {
+  background-color: white;
+  color: var(--primary);
+}
+
+@media (max-width: 768px) {
+  .header-cart-button {
+    width: 36px;
+    height: 36px;
+    z-index: 1001; /* Ensure it's above the backdrop */
+  }
+}
